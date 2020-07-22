@@ -1,0 +1,120 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "30.0.1"
+
+    defaultConfig {
+        applicationId "com.biodun.mindvalley"
+        minSdkVersion 19
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    signingConfigs {
+        debug {
+            storeFile file("../debug_signing_keys")
+            storePassword System.getenv('KEY_STORE_PASSWORD') ?: keyStorePassword
+            keyAlias "debug android app"
+            keyPassword System.getenv('KEY_STORE_PASSWORD') ?: keyStorePassword
+        }
+
+        release {
+            storeFile file("../release_signing_keys")
+            storePassword System.getenv('KEY_STORE_PASSWORD') ?: keyStorePassword
+            keyAlias "release android app"
+            keyPassword System.getenv('KEY_STORE_PASSWORD') ?: keyStorePassword
+        }
+    }
+
+    buildTypes {
+        release {
+            debuggable false
+            signingConfig signingConfigs.release
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
+            signingConfig signingConfigs.debug
+            debuggable true
+            applicationIdSuffix ".debug"
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+
+    // Design library
+    implementation rootProject.libs.constraintLayout
+    implementation rootProject.libs.appcompat
+    implementation rootProject.libs.design
+    implementation rootProject.libs.supportV4
+    implementation rootProject.libs.recyclerview
+
+    // Jetpack libraries
+    implementation rootProject.libs.lifecycle
+    implementation rootProject.libs.coreKtx
+    implementation rootProject.libs.viewModel
+    implementation rootProject.libs.fragmentKtx
+
+    // Kotlin
+    implementation rootProject.libs.kotlinStdlibJdk7
+
+    // Dagger Hilt
+    implementation rootProject.libs.daggerHilt
+    kapt rootProject.libs.daggerHiltCompiler
+
+    implementation rootProject.libs.daggerHiltViewModel
+    kapt rootProject.libs.daggerHiltAndroidCompiler
+
+    // Okhttp & Retrofit
+    implementation rootProject.libs.okhttp
+    implementation rootProject.libs.loggingInterceptor
+    implementation rootProject.libs.okhttpUrlConnection
+    implementation rootProject.libs.retrofit
+    implementation rootProject.libs.rxKotlin
+    implementation rootProject.libs.rxAndroid
+
+    // JSON parsing
+    implementation rootProject.libs.gson
+    implementation rootProject.libs.gsonConverter
+    implementation rootProject.libs.gsonScalarConverter
+
+    // Room Database
+    implementation rootProject.libs.roomRuntime
+    implementation rootProject.libs.roomKtx
+    implementation rootProject.libs.roomRxJava
+    kapt rootProject.libs.roomCompiler
+
+    // Image library
+    implementation rootProject.libs.glide
+    kapt rootProject.libs.glideCompiler
+
+    // Facebook Shimmer
+    implementation rootProject.libs.shimmer
+
+    // Test dependencies
+    testImplementation rootProject.libs.junit
+    testImplementation rootProject.libs.testRunner
+    testImplementation rootProject.libs.testRules
+    testImplementation rootProject.libs.robolectric
+    testImplementation rootProject.libs.testCore
+    testImplementation rootProject.libs.mockitoCore
+    testImplementation rootProject.libs.mockitoKotlin
+    testImplementation rootProject.libs.roomTesting
+
+    // Android Test dependencies
+    androidTestImplementation rootProject.libs.junit
+    androidTestImplementation rootProject.libs.testRunner
+    androidTestImplementation rootProject.libs.testRules
+    androidTestImplementation rootProject.libs.testCore
+    androidTestImplementation rootProject.libs.espressoCore
+}
