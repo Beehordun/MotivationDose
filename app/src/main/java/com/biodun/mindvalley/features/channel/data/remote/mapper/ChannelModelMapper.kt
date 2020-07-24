@@ -11,7 +11,7 @@ class ChannelModelMapper @Inject constructor(
     private val channelLatestMediaMapper: ChannelLatestMediaMapper
 ) {
 
-    fun mapFromRemoteChannelData(remoteChannel: RemoteChannel): List<ChannelModel> {
+    fun mapFromRemoteChannel(remoteChannel: RemoteChannel): List<ChannelModel> {
         return remoteChannel.remoteChannelData?.channels?.map {
             ChannelModel(
                 channelTitle = it.channelTitle ?: EMPTY_STRING,
