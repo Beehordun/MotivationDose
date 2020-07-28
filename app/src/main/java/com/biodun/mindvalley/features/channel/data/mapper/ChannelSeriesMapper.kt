@@ -1,14 +1,14 @@
 package com.biodun.mindvalley.features.channel.data.mapper
 
 import com.biodun.mindvalley.features.channel.data.model.channel.ChannelSeriesModel
-import com.biodun.mindvalley.features.channel.domain.model.ChannelSeriesDomainModel
+import com.biodun.mindvalley.features.channel.domain.model.ChannelSeries
 import javax.inject.Inject
 
-class ChannelSeriesDomainModelMapper @Inject constructor() {
+class ChannelSeriesMapper @Inject constructor() {
 
-    fun mapToDomain(channelSeries: List<ChannelSeriesModel>): List<ChannelSeriesDomainModel> =
+    fun mapToDomain(channelSeries: List<ChannelSeriesModel>): List<ChannelSeries> =
         channelSeries.map {
-            ChannelSeriesDomainModel(
+            ChannelSeries(
                 seriesTitle = it.seriesTitle,
                 seriesTitleCoverAssetUrl = it.seriesTitleCoverAssetUrl
             )

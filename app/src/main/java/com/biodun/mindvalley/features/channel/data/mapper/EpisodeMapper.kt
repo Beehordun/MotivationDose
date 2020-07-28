@@ -1,14 +1,14 @@
 package com.biodun.mindvalley.features.channel.data.mapper
 
 import com.biodun.mindvalley.features.channel.data.model.episode.EpisodeModel
-import com.biodun.mindvalley.features.channel.domain.model.EpisodeDomainModel
+import com.biodun.mindvalley.features.channel.domain.model.EpisodeData
 import javax.inject.Inject
 
-class EpisodeDomainModelMapper @Inject constructor() {
+class EpisodeMapper @Inject constructor() {
 
-    fun mapToDomain(episodes: List<EpisodeModel>): List<EpisodeDomainModel> =
+    fun mapToDomain(episodes: List<EpisodeModel>): List<EpisodeData> =
         episodes.map {
-            EpisodeDomainModel(
+            EpisodeData(
                 episodeType = it.episodeType,
                 episodeTitle = it.episodeTitle,
                 episodeCoverAssetUrl = it.episodeCoverAssetUrl,

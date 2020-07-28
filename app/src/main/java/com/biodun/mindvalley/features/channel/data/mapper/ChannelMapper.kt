@@ -1,24 +1,24 @@
 package com.biodun.mindvalley.features.channel.data.mapper
 
 import com.biodun.mindvalley.features.channel.data.model.channel.ChannelModel
-import com.biodun.mindvalley.features.channel.domain.model.ChannelDomainModel
+import com.biodun.mindvalley.features.channel.domain.model.ChannelData
 import javax.inject.Inject
 
-class ChannelDomainModelMapper @Inject constructor(
-    private val channelSeriesDomainModelMapper: ChannelSeriesDomainModelMapper,
-    private val channelLatestMediaDomainModelMapper: ChannelLatestMediaDomainModelMapper
+class ChannelMapper @Inject constructor(
+    private val channelSeriesMapper: ChannelSeriesMapper,
+    private val channelLatestMediaMapper: ChannelLatestMediaMapper
 ) {
 
-    fun mapToDomain(channels: List<ChannelModel>): List<ChannelDomainModel> =
+    fun mapToDomain(channels: List<ChannelModel>): List<ChannelData> =
         channels.map {
-            ChannelDomainModel(
+            ChannelData(
                 channelTitle = it.channelTitle,
                 channelMediaCount = it.channelMediaCount,
                 channelCoverAssetUrl = it.channelCoverAssetUrl,
                 channelIconAssetUrl = it.channelIconAssetUrl,
-                channelSeries = channelSeriesDomainModelMapper.mapToDomain(it.channelSeries),
+                channelSeries = channelSeriesMapper.mapToDomain(it.channelSeries),
                 channelLatestMedia =
-                channelLatestMediaDomainModelMapper.mapToDomain(it.channelLatestMedia)
+                channelLatestMediaMapper.mapToDomain(it.channelLatestMedia)
             )
         }
 }
