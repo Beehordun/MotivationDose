@@ -28,9 +28,13 @@ ext {
         kotlinVersion = "1.3.72"
         daggerHiltAndroidVersion = "2.28-alpha"
         daggerHiltVersion = "1.0.0-alpha01"
-        rxKotlinVersion = "3.0.0"
-        rxAndroidVersion = "3.0.0"
+        rxKotlinVersion = "2.4.0"
+        rxAndroidVersion = "2.1.1"
         fragmentKtxVersion = "1.2.5"
+        retrofitRxAdapterVersion = "1.0.0"
+        archCoreTestVersion = "2.1.0"
+        espressoIdlingResourceVersion = "3.3.0-alpha04"
+        kakaoVersion = "2.0.0"
 
         libs = [
 
@@ -46,9 +50,12 @@ ext {
                 espressoIntents: "com.android.support.test.espresso:espresso-intents:$espressoVersion",
                 espressoCore: "com.android.support.test.espresso:espresso-core:$espressoVersion",
                 espressoContrib: "com.android.support.test.espresso:espresso-contrib:$espressoVersion",
+                espressodIdlingResource: "androidx.test.espresso:espresso-idling-resource:$espressoIdlingResourceVersion",
                 testRunner: "com.android.support.test:runner:$rulesVersion",
                 testRules: "com.android.support.test:rules:$rulesVersion",
                 testCore: "androidx.test:core:$coreVersion",
+                kakao: "com.agoda.kakao:kakao:$kakaoVersion",
+                archCoreTest: "androidx.arch.core:core-testing:$archCoreTestVersion",
 
                 // Androidx
                 appcompat: "androidx.appcompat:appcompat:$androidXVersion",
@@ -87,8 +94,9 @@ ext {
                 viewModel: "androidx.lifecycle:lifecycle-viewmodel-ktx:$viewmodelVersion",
 
                 // Rx Java
-                'rxKotlin'   : "io.reactivex.rxjava3:rxkotlin:$rxKotlinVersion",
-                'rxAndroid': "io.reactivex.rxjava3:rxandroid:$rxAndroidVersion",
+                'rxKotlin'   : "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion",
+                'rxAndroid': "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion",
+                'retrofitRxAdapter': "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:$retrofitRxAdapterVersion",
 
                 // Facebook Shimmer
                 shimmer: "com.facebook.shimmer:shimmer:0.5.0",

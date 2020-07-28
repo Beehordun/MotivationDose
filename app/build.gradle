@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'dagger.hilt.android.plugin'
 
 android {
     compileSdkVersion 29
@@ -13,8 +14,10 @@ android {
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField 'String', 'BASE_URL', baseUrl
     }
 
     signingConfigs {
@@ -46,6 +49,15 @@ android {
             debuggable true
             applicationIdSuffix ".debug"
         }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
     }
 }
 
@@ -82,6 +94,7 @@ dependencies {
     implementation rootProject.libs.retrofit
     implementation rootProject.libs.rxKotlin
     implementation rootProject.libs.rxAndroid
+    implementation rootProject.libs.retrofitRxAdapter
 
     // JSON parsing
     implementation rootProject.libs.gson
@@ -101,6 +114,9 @@ dependencies {
     // Facebook Shimmer
     implementation rootProject.libs.shimmer
 
+    //Espresso Idling Resource
+    implementation rootProject.libs.espressodIdlingResource
+
     // Test dependencies
     testImplementation rootProject.libs.junit
     testImplementation rootProject.libs.testRunner
@@ -110,6 +126,7 @@ dependencies {
     testImplementation rootProject.libs.mockitoCore
     testImplementation rootProject.libs.mockitoKotlin
     testImplementation rootProject.libs.roomTesting
+    testImplementation rootProject.libs.archCoreTest
 
     // Android Test dependencies
     androidTestImplementation rootProject.libs.junit
@@ -117,4 +134,7 @@ dependencies {
     androidTestImplementation rootProject.libs.testRules
     androidTestImplementation rootProject.libs.testCore
     androidTestImplementation rootProject.libs.espressoCore
+    androidTestImplementation rootProject.libs.espressodIdlingResource
+    androidTestImplementation rootProject.libs.archCoreTest
+    androidTestImplementation rootProject.libs.kakao
 }
