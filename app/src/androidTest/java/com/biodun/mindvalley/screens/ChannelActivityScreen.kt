@@ -1,20 +1,51 @@
 package com.biodun.mindvalley.screens
 
-class PostListActivityScreen : Screen<PostListActivityScreen>() {
-    val postListRecycler = KRecyclerView({
-        withId(R.id.rv_posts)
+import android.view.View
+import com.agoda.kakao.image.KImageView
+import com.agoda.kakao.recycler.KRecyclerItem
+import com.agoda.kakao.recycler.KRecyclerView
+import com.agoda.kakao.screen.Screen
+import com.agoda.kakao.text.KTextView
+import com.biodun.mindvalley.R
+import org.hamcrest.Matcher
+
+class ChannelActivityScreen : Screen<ChannelActivityScreen>() {
+
+    val categoryRecycler = KRecyclerView({
+        withId(R.id.categoryRecyclerView)
     }, itemTypeBuilder = {
-        itemType(::Item)
+        itemType(::CategoryItem)
     })
 
-    val loader = KProgressBar {
-        withId(R.id.pb_loading_list)
+    val categoriesTitle = KTextView {
+        withId(R.id.categoryHeader)
     }
 
-    class Item(parent: Matcher<View>) : KRecyclerItem<Item>(parent) {
-        val title = KTextView(parent) { withId(R.id.tv_title) }
-        val partialBody = KTextView(parent) { withId(R.id.tv_partial_body) }
-        val userName = KTextView(parent) { withId(R.id.tv_user_name) }
-        val userImage = KImageView(parent) { withId(R.id.iv_user_picture) }
+    val channelRecycler = KRecyclerView({
+        withId(R.id.channelRecyclerView)
+    }, itemTypeBuilder = {
+        itemType(::ChannelItem)
+    })
+
+    val episodeRecycler = KRecyclerView({
+        withId(R.id.episodeRecyclerView)
+    }, itemTypeBuilder = {
+        itemType(::EpisodeItem)
+    })
+
+    class CategoryItem(parent: Matcher<View>) : KRecyclerItem<CategoryItem>(parent) {
+        val categoryName = KTextView(parent) { withId(R.id.categoryNameText) }
+    }
+
+    class ChannelItem(parent: Matcher<View>) : KRecyclerItem<ChannelItem>(parent) {
+        val channelIconImage = KImageView(parent) { withId(R.id.channelIconImageView) }
+        val channelIconTitleText = KTextView(parent) { withId(R.id.channelTitleText) }
+        val channelMediaCountText = KTextView(parent) { withId(R.id.channelMediaCountText) }
+    }
+
+    class EpisodeItem(parent: Matcher<View>) : KRecyclerItem<EpisodeItem>(parent) {
+        val episodeImage = KImageView(parent) { withId(R.id.episodeImageView) }
+        val episodeTitleText = KTextView(parent) { withId(R.id.episodeTitleText) }
+        val episodeChannelTitleText = KTextView(parent) { withId(R.id.episodeChannelTitleText) }
     }
 }
