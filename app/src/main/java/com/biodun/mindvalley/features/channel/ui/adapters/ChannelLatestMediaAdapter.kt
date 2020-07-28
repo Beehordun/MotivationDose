@@ -7,25 +7,20 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.biodun.mindvalley.R
 import com.biodun.mindvalley.core.GlideApp
-import com.biodun.mindvalley.features.channel.domain.model.ChannelData
 import com.biodun.mindvalley.features.channel.domain.model.ChannelLatestMedia
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import kotlinx.android.synthetic.main.channel_item_outer_layout.view.*
+import kotlinx.android.synthetic.main.channel_item_latest_media_layout.view.*
 
-const val MAX_SIZE_PER_ROW = 6
 class ChannelLatestMediaAdapter(
     private val channels: List<ChannelLatestMedia>,
     private val context: Context
-) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
-    override fun getItemCount(): Int {
-        return MAX_SIZE_PER_ROW
-    }
-
+) : ChannelBaseAdapter(channels.size) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.channel_item_latest_media_layout, parent, false)
+        val viewHolderWidth =
+            AdapterUtil.getViewHolderWidthAsPercentageOfParent(context, WIDTH_PERCENT)
+        view.layoutParams.width = viewHolderWidth
         return ChannelLatestMediaViewHolder(view)
     }
 
@@ -33,15 +28,11 @@ class ChannelLatestMediaAdapter(
         val channelData = channels[position]
 
         GlideApp.with(context)
-            .load(channelData.channelIconAssetUrl)
-            .transform(RoundedCorners(50))
-            .centerCrop()
-            .into(holder.itemView.channelIconImageView)
+            .load(channelData.channelCoverAssetUrl)
+            .into(holder.itemView.channelLatestMediaImageView)
 
-        holder.itemView.channelTitleText.text = channelData.channelTitle
-        holder.itemView.channelMediaCountText.text = channelData.channelMediaCount.toString()
+        holder.itemView.channelLatestMediaTitleText.text = channelData.channelTitle
     }
 
     internal class ChannelLatestMediaViewHolder internal constructor(v: View) : RecyclerView.ViewHolder(v)
-
 }
