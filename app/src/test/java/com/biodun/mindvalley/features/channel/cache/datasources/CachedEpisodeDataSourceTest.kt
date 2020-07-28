@@ -1,4 +1,4 @@
-package com.biodun.mindvalley.features.channel.data.cache.datasources
+package com.biodun.mindvalley.features.channel.cache.datasources
 
 import android.content.Context
 import androidx.room.Room
@@ -8,12 +8,16 @@ import com.biodun.mindvalley.features.channel.data.cache.CachedEpisodeDataSource
 import com.biodun.mindvalley.features.channel.data.cache.CachedEpisodeDataSourceImpl
 import com.biodun.mindvalley.features.channel.data.cache.db.AppDatabase
 import com.biodun.mindvalley.features.channel.data.cache.entity.CachedEpisodeEntity
-import com.biodun.mindvalley.features.channel.data.testFakeFactory.FakeCacheTestFactory
+import com.biodun.mindvalley.features.channel.testFakeFactory.FakeCacheTestFactory
 import com.biodun.mindvalley.features.channel.data.cache.mapper.EpisodeEntityMapper
 import com.biodun.mindvalley.features.channel.data.model.episode.EpisodeModel
-import org.junit.*
-import org.junit.rules.ExpectedException
+import org.junit.After
+import org.junit.Assert.assertEquals
+import org.junit.Before
+import org.junit.Rule
+import org.junit.Test
 import org.junit.runner.RunWith
+import org.junit.rules.ExpectedException
 import java.io.IOException
 
 @RunWith(AndroidJUnit4::class)
@@ -51,15 +55,15 @@ class CachedEpisodeDataSourceTest {
         cacheEpisodeDataSource.insertEpisodeData(episodeModel)
         val returnedEpisodeEntity = cacheEpisodeDataSource.getEpisodeData().blockingGet()
 
-        Assert.assertEquals(returnedEpisodeEntity, episodeModel)
+        assertEquals(returnedEpisodeEntity, episodeModel)
     }
 
     @Test
-    fun insertEpisodeTest()  {
+    fun insertEpisodeTest() {
         cacheEpisodeDataSource.insertEpisodeData(episodeModel)
         val returnedEpisodeEntity = cacheEpisodeDataSource.getEpisodeData().blockingGet()
 
-        Assert.assertEquals(returnedEpisodeEntity, episodeModel)
+        assertEquals(returnedEpisodeEntity, episodeModel)
     }
 
     @Test
@@ -69,6 +73,6 @@ class CachedEpisodeDataSourceTest {
 
         val returnedData = cacheEpisodeDataSource.getEpisodeData().blockingGet()
 
-        Assert.assertEquals(returnedData.size, 0)
+        assertEquals(returnedData.size, 0)
     }
 }

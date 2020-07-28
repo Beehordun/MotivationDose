@@ -1,15 +1,14 @@
-package com.biodun.mindvalley.features.channel.data.presentation
+package com.biodun.mindvalley.features.channel.presentation
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.biodun.mindvalley.core.ViewState
 import com.biodun.mindvalley.core.scheduler.SchedulerWrapper
-import com.biodun.mindvalley.features.channel.data.testFakeFactory.CategoryTestFactory
-import com.biodun.mindvalley.features.channel.data.testFakeFactory.EpisodeTestFactory
-import com.biodun.mindvalley.features.channel.data.testFakeFactory.FakeCacheTestFactory
+import com.biodun.mindvalley.features.channel.testFakeFactory.CategoryTestFactory
+import com.biodun.mindvalley.features.channel.testFakeFactory.EpisodeTestFactory
+import com.biodun.mindvalley.features.channel.testFakeFactory.FakeCacheTestFactory
 import com.biodun.mindvalley.features.channel.domain.usecases.GetCategoryUseCase
 import com.biodun.mindvalley.features.channel.domain.usecases.GetChannelUseCase
 import com.biodun.mindvalley.features.channel.domain.usecases.GetEpisodeUseCase
-import com.biodun.mindvalley.features.channel.presentation.ChannelViewModel
 import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.whenever
@@ -38,7 +37,12 @@ class ChannelViewModelTest {
 
     @Before
     fun setUp() {
-        channelViewModel = ChannelViewModel(getCategoryUseCase, getChannelUseCase, getEpisodeUseCase, testScheduler)
+        channelViewModel = ChannelViewModel(
+            getCategoryUseCase,
+            getChannelUseCase,
+            getEpisodeUseCase,
+            testScheduler
+        )
     }
 
     @Test

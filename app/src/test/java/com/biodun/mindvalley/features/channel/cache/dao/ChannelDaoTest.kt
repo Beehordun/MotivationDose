@@ -1,16 +1,20 @@
-package com.biodun.mindvalley.features.channel.data.cache.dao
+package com.biodun.mindvalley.features.channel.cache.dao
 
 import android.content.Context
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.runner.AndroidJUnit4
+import com.biodun.mindvalley.features.channel.data.cache.dao.ChannelDao
 import com.biodun.mindvalley.features.channel.data.cache.db.AppDatabase
-import com.biodun.mindvalley.features.channel.data.testFakeFactory.FakeCacheTestFactory
-import org.junit.*
+import com.biodun.mindvalley.features.channel.testFakeFactory.FakeCacheTestFactory
+import org.junit.After
+import org.junit.Assert.assertEquals
+import org.junit.Before
+import org.junit.Rule
+import org.junit.Test
 import org.junit.runner.RunWith
 import java.io.IOException
-
 
 @RunWith(AndroidJUnit4::class)
 class ChannelDaoTest {
@@ -44,7 +48,7 @@ class ChannelDaoTest {
         channelDao.getChannels().test().run {
             assertNoErrors()
             val data = values()[0]
-            Assert.assertEquals(data.size, channelData.size)
+            assertEquals(data.size, channelData.size)
             dispose()
         }
     }
@@ -56,7 +60,7 @@ class ChannelDaoTest {
         channelDao.insertAllChannel(channelData)
         val returnedChannelData = channelDao.getChannels().blockingGet()
 
-        Assert.assertEquals(returnedChannelData.size, channelData.size)
+        assertEquals(returnedChannelData.size, channelData.size)
     }
 
     @Test
@@ -68,6 +72,6 @@ class ChannelDaoTest {
 
         val returnedChannelData = channelDao.getChannels().blockingGet()
 
-        Assert.assertEquals(returnedChannelData.size, 0)
+        assertEquals(returnedChannelData.size, 0)
     }
 }

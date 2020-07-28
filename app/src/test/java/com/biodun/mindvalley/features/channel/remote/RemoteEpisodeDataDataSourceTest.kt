@@ -1,10 +1,11 @@
-package com.biodun.mindvalley.features.channel.data.remote
+package com.biodun.mindvalley.features.channel.remote
 
+import com.biodun.mindvalley.features.channel.data.remote.ChannelApi
 import com.biodun.mindvalley.features.channel.data.remote.episode.RemoteEpisodeDataSource
 import com.biodun.mindvalley.features.channel.data.remote.episode.RemoteEpisodeDataSourceImpl
 import com.biodun.mindvalley.features.channel.data.remote.mapper.EpisodeModelMapper
-import com.biodun.mindvalley.features.channel.data.testFakeFactory.EpisodeTestFactory
-import com.biodun.mindvalley.features.channel.data.testFakeFactory.TestChannelApi
+import com.biodun.mindvalley.features.channel.testFakeFactory.EpisodeTestFactory
+import com.biodun.mindvalley.features.channel.testFakeFactory.TestChannelApi
 import io.reactivex.Single
 import org.junit.Assert.assertEquals
 import org.junit.Before

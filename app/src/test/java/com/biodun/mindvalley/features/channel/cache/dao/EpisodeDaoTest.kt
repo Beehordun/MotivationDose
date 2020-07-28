@@ -1,10 +1,11 @@
-package com.biodun.mindvalley.features.channel.data.cache.dao
+package com.biodun.mindvalley.features.channel.cache.dao
 
 import android.content.Context
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.runner.AndroidJUnit4
-import com.biodun.mindvalley.features.channel.data.testFakeFactory.FakeCacheTestFactory
+import com.biodun.mindvalley.features.channel.data.cache.dao.EpisodeDao
+import com.biodun.mindvalley.features.channel.testFakeFactory.FakeCacheTestFactory
 import com.biodun.mindvalley.features.channel.data.cache.db.AppDatabase
 import org.junit.After
 import org.junit.Assert

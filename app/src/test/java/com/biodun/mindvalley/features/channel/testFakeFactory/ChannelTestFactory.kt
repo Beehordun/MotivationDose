@@ -1,10 +1,16 @@
-package com.biodun.mindvalley.features.channel.data.testFakeFactory
+package com.biodun.mindvalley.features.channel.testFakeFactory
 
-import com.biodun.mindvalley.core.Constants.DEFAULT_INT
+import com.biodun.mindvalley.core.DEFAULT_INT
 import com.biodun.mindvalley.features.channel.data.model.channel.ChannelLatestMediaModel
 import com.biodun.mindvalley.features.channel.data.model.channel.ChannelModel
 import com.biodun.mindvalley.features.channel.data.model.channel.ChannelSeriesModel
-import com.biodun.mindvalley.features.channel.data.remote.model.channel.*
+import com.biodun.mindvalley.features.channel.data.remote.model.channel.RemoteChannel
+import com.biodun.mindvalley.features.channel.data.remote.model.channel.RemoteChannelIconAsset
+import com.biodun.mindvalley.features.channel.data.remote.model.channel.RemoteChannelLatestMedia
+import com.biodun.mindvalley.features.channel.data.remote.model.channel.RemoteChannelSeries
+import com.biodun.mindvalley.features.channel.data.remote.model.channel.RemoteChannelCoverAsset
+import com.biodun.mindvalley.features.channel.data.remote.model.channel.RemoteChannelData
+import com.biodun.mindvalley.features.channel.data.remote.model.channel.RemoteChannels
 import java.util.UUID
 
 object ChannelTestFactory {
@@ -57,7 +63,7 @@ object ChannelTestFactory {
         )
 
     fun getRemoteChannelLatestMedia(): List<RemoteChannelLatestMedia> =
-         listOf(
+        listOf(
             RemoteChannelLatestMedia(
                 channelLatestMediaType = channelLatestMediaType,
                 channelLatestMediaTitle = channelLatestMediaTitle,

@@ -1,6 +1,6 @@
-package com.biodun.mindvalley.features.channel.data.remote
+package com.biodun.mindvalley.features.channel.remote
 
-import com.biodun.mindvalley.features.channel.data.testFakeFactory.ChannelTestFactory
+import com.biodun.mindvalley.features.channel.testFakeFactory.ChannelTestFactory
 import com.biodun.mindvalley.features.channel.data.remote.mapper.ChannelSeriesMapper
 import org.junit.Assert
 import org.junit.Before

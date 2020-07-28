@@ -1,6 +1,6 @@
-package com.biodun.mindvalley.features.channel.data.testFakeFactory
+package com.biodun.mindvalley.features.channel.testFakeFactory
 
-import com.biodun.mindvalley.core.Constants.EMPTY_STRING
+import com.biodun.mindvalley.core.EMPTY_STRING
 import com.biodun.mindvalley.features.channel.data.model.episode.EpisodeModel
 import com.biodun.mindvalley.features.channel.data.remote.model.episode.RemoteEpisode
 import com.biodun.mindvalley.features.channel.data.remote.model.episode.RemoteEpisodeData
@@ -25,13 +25,14 @@ object EpisodeTestFactory {
         val episodeModels: MutableList<EpisodeModel> = mutableListOf()
         return getRemoteEpisodeMedia()
             .map {
-            EpisodeModel(
-                episodeType = it.episodeType ?: EMPTY_STRING,
-                episodeTitle = it.episodeTitle ?: EMPTY_STRING,
-                episodeCoverAssetUrl = it.remoteEpisodeCoverAsset?.episodeCoverAssetUrl ?: EMPTY_STRING,
-                episodeChannelTitle = it.remoteEpisodeChannel?.episodeTitle ?: EMPTY_STRING
-            )
-        }
+                EpisodeModel(
+                    episodeType = it.episodeType ?: EMPTY_STRING,
+                    episodeTitle = it.episodeTitle ?: EMPTY_STRING,
+                    episodeCoverAssetUrl = it.remoteEpisodeCoverAsset?.episodeCoverAssetUrl
+                        ?: EMPTY_STRING,
+                    episodeChannelTitle = it.remoteEpisodeChannel?.episodeTitle ?: EMPTY_STRING
+                )
+            }
     }
 
     fun getRemoteEpisodeWithNullData(): RemoteEpisode {
@@ -69,7 +70,7 @@ object EpisodeTestFactory {
         )
 
     private fun getRemoteEpisodeCoverAsset(): RemoteEpisodeCoverAsset =
-         RemoteEpisodeCoverAsset(episodeCoverAssetUrl = episodeCoverAssetUrl)
+        RemoteEpisodeCoverAsset(episodeCoverAssetUrl = episodeCoverAssetUrl)
 
     private fun getRemoteEpisodeChannel(): RemoteEpisodeChannel =
         RemoteEpisodeChannel(episodeTitle = episodeChannelTitle)

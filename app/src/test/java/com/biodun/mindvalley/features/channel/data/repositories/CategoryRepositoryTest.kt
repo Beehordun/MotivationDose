@@ -1,86 +1,102 @@
 package com.biodun.mindvalley.features.channel.data.repositories
 
-import com.biodun.bitcoinChart.DummyData
-import com.biodun.blockchainmarket.data.local.ReactiveDb
-import com.biodun.blockchainmarket.data.model.BitcoinData
-import com.biodun.blockchainmarket.data.remote.BitcoinChartRemoteDataSource
-import com.biodun.blockchainmarket.data.repository.BitcoinChartRepository
-import com.biodun.blockchainmarket.data.repository.BitcoinChartRepositoryImpl
-import com.biodun.core.utils.Duration.DEFAULT
+import com.biodun.mindvalley.core.NetworkHandler
+import com.biodun.mindvalley.features.channel.data.cache.CachedCategoryDataSource
+import com.biodun.mindvalley.features.channel.data.mapper.CategoryMapper
+import com.biodun.mindvalley.features.channel.data.remote.category.RemoteCategoryDataSource
 import com.biodun.mindvalley.features.channel.domain.repositories.CategoryRepository
+import com.biodun.mindvalley.features.channel.testFakeFactory.FakeCacheTestFactory
 import com.nhaarman.mockito_kotlin.mock
-import com.nhaarman.mockito_kotlin.verify
+import com.nhaarman.mockito_kotlin.verifyZeroInteractions
 import com.nhaarman.mockito_kotlin.whenever
-import io.reactivex.Flowable
 import io.reactivex.Single
-import com.example.testshared.TestScheduler as LocalTestScheduler
+import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
+import org.mockito.Mockito.verify
 
 class CategoryRepositoryTest {
 
     private lateinit var categoryRepository: CategoryRepository
-    private val bitcoinChartRemoteDataSource: BitcoinChartRemoteDataSource = mock()
-    private val reactiveDb: ReactiveDb<BitcoinData> = mock()
-    private val response = DummyData.bitcoinData
-    private val duration = DEFAULT.time
-    private val throwable = Throwable()
+    private val remoteCategoryDataSource: RemoteCategoryDataSource = mock()
+    private val cachedCategoryDataSource: CachedCategoryDataSource = mock()
+    private val categoryMapper: CategoryMapper = mock()
+    private val networkHandler: NetworkHandler = mock()
 
     @Before
     fun setUp() {
-        bitcoinRepository =
-            BitcoinChartRepositoryImpl(
-                bitcoinChartRemoteDataSource,
-                reactiveDb,
-                LocalTestScheduler()
+        categoryRepository =
+            CategoryRepositoryImpl(
+                remoteCategoryDataSource, cachedCategoryDataSource, categoryMapper, networkHandler
             )
     }
 
     @Test
-    fun getRemoteBitcoinData_withDuration_returnsBitcoinDataAndSavesIntoDb() {
-        whenever(bitcoinChartRemoteDataSource.getRemoteBitcoinData(duration))
-            .thenReturn(Single.just(response))
+    fun getCategory_whenConnection_fetchesRemoteCategoryData() {
+        val categoryModelData = FakeCacheTestFactory.getCategoryModel()
+        val expectedData = CategoryMapper().mapToDomain(categoryModelData)
 
-        val test = bitcoinRepository.getBitcoinData(duration).test()
+        whenever(networkHandler.isConnected()).thenReturn(true)
+        whenever(remoteCategoryDataSource.getCategoryData())
+            .thenReturn(Single.just(categoryModelData))
+        whenever(categoryMapper.mapToDomain(categoryModelData)).thenReturn(expectedData)
 
-        verify(bitcoinChartRemoteDataSource).getRemoteBitcoinData(duration)
-        verify(reactiveDb).insertAllBitcoinData(response)
-        test.assertValue(response)
-        test.dispose()
+        val test = categoryRepository.getCategory().test()
+
+        verify(remoteCategoryDataSource).getCategoryData()
+        verify(categoryMapper).mapToDomain(categoryModelData)
+
+        test.run {
+            val data = values()[0]
+            Assert.assertEquals(expectedData, data)
+            dispose()
+        }
     }
 
     @Test
-    fun getRemoteBitcoinData_withDuration_throwsException() {
-        whenever(bitcoinChartRemoteDataSource.getRemoteBitcoinData(duration))
-            .thenReturn(Single.error(throwable))
+    fun getCategory_whenNoConnection_getsCachedCategoryData() {
+        val categoryModelData = FakeCacheTestFactory.getCategoryModel()
+        val expectedData = CategoryMapper().mapToDomain(categoryModelData)
 
-        val test = bitcoinRepository.getBitcoinData(duration).test()
+        whenever(networkHandler.isConnected()).thenReturn(false)
+        whenever(cachedCategoryDataSource.getCategoryData())
+            .thenReturn(Single.just(categoryModelData))
+        whenever(categoryMapper.mapToDomain(categoryModelData)).thenReturn(expectedData)
 
-        verify(bitcoinChartRemoteDataSource).getRemoteBitcoinData(duration)
-        test.assertError(throwable)
-        test.dispose()
+        val test = categoryRepository.getCategory().test()
+
+        verify(cachedCategoryDataSource).getCategoryData()
+        verify(categoryMapper).mapToDomain(categoryModelData)
+        verifyZeroInteractions(remoteCategoryDataSource)
+
+        test.run {
+            val data = values()[0]
+            Assert.assertEquals(expectedData, data)
+            dispose()
+        }
     }
 
     @Test
-    fun getLocalBitcoinData_returnsBitcoinData() {
-        whenever(reactiveDb.getAllBitcoinData()).thenReturn(Flowable.just(response))
+    fun getCategory_whenConnectionButThrowsError_fetchDataFromDb() {
+        val categoryModelData = FakeCacheTestFactory.getCategoryModel()
+        val expectedData = CategoryMapper().mapToDomain(categoryModelData)
 
-        val test = bitcoinRepository.getLocalBitcoinData().test()
+        whenever(networkHandler.isConnected()).thenReturn(true)
+        whenever(remoteCategoryDataSource.getCategoryData())
+            .thenReturn(Single.error(Throwable()))
+        whenever(cachedCategoryDataSource.getCategoryData())
+            .thenReturn(Single.just(categoryModelData))
+        whenever(categoryMapper.mapToDomain(categoryModelData)).thenReturn(expectedData)
 
-        verify(reactiveDb).getAllBitcoinData()
-        test.assertValue(response)
-        test.dispose()
-    }
+        val test = categoryRepository.getCategory().test()
 
-    @Test
-    fun getLocalBitcoinData_throwsException() {
-        whenever(reactiveDb.getAllBitcoinData())
-            .thenReturn(Flowable.error(throwable))
+        com.nhaarman.mockito_kotlin.verify(cachedCategoryDataSource).getCategoryData()
+        com.nhaarman.mockito_kotlin.verify(categoryMapper).mapToDomain(categoryModelData)
 
-        val test = bitcoinRepository.getLocalBitcoinData().test()
-
-        verify(reactiveDb).getAllBitcoinData()
-        test.assertError(throwable)
-        test.dispose()
+        test.run {
+            val data = values()[0]
+            Assert.assertEquals(expectedData, data)
+            dispose()
+        }
     }
 }

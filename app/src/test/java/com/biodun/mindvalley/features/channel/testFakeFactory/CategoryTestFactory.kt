@@ -1,4 +1,4 @@
-package com.biodun.mindvalley.features.channel.data.testFakeFactory
+package com.biodun.mindvalley.features.channel.testFakeFactory
 
 import com.biodun.mindvalley.features.channel.data.model.category.CategoryModel
 import com.biodun.mindvalley.features.channel.data.remote.model.category.RemoteCategories

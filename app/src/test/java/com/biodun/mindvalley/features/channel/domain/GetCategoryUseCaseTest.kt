@@ -1,6 +1,6 @@
-package com.biodun.mindvalley.features.channel.data.domain
+package com.biodun.mindvalley.features.channel.domain
 
-import com.biodun.mindvalley.features.channel.data.testFakeFactory.CategoryTestFactory
+import com.biodun.mindvalley.features.channel.testFakeFactory.CategoryTestFactory
 import com.biodun.mindvalley.features.channel.domain.repositories.CategoryRepository
 import com.biodun.mindvalley.features.channel.domain.usecases.GetCategoryUseCase
 import com.nhaarman.mockito_kotlin.mock

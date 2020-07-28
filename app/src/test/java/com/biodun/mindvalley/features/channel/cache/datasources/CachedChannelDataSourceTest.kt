@@ -1,4 +1,4 @@
-package com.biodun.mindvalley.features.channel.data.cache.datasources
+package com.biodun.mindvalley.features.channel.cache.datasources
 
 import android.content.Context
 import androidx.room.Room
@@ -6,21 +6,20 @@ import androidx.test.core.app.ApplicationProvider
 import androidx.test.runner.AndroidJUnit4
 import com.biodun.mindvalley.features.channel.data.cache.CachedChannelDataSource
 import com.biodun.mindvalley.features.channel.data.cache.CachedChannelDataSourceImpl
-import com.biodun.mindvalley.features.channel.data.cache.CachedEpisodeDataSource
-import com.biodun.mindvalley.features.channel.data.cache.CachedEpisodeDataSourceImpl
 import com.biodun.mindvalley.features.channel.data.cache.db.AppDatabase
 import com.biodun.mindvalley.features.channel.data.cache.entity.CachedChannelEntity
-import com.biodun.mindvalley.features.channel.data.cache.entity.CachedEpisodeEntity
 import com.biodun.mindvalley.features.channel.data.cache.mapper.ChannelEntityMapper
 import com.biodun.mindvalley.features.channel.data.cache.mapper.ChannelLatestMediaMapper
 import com.biodun.mindvalley.features.channel.data.cache.mapper.ChannelSeriesMapper
-import com.biodun.mindvalley.features.channel.data.cache.mapper.EpisodeEntityMapper
 import com.biodun.mindvalley.features.channel.data.model.channel.ChannelModel
-import com.biodun.mindvalley.features.channel.data.model.episode.EpisodeModel
-import com.biodun.mindvalley.features.channel.data.testFakeFactory.FakeCacheTestFactory
-import org.junit.*
-import org.junit.rules.ExpectedException
+import com.biodun.mindvalley.features.channel.testFakeFactory.FakeCacheTestFactory
+import org.junit.After
+import org.junit.Assert.assertEquals
+import org.junit.Before
+import org.junit.Rule
+import org.junit.Test
 import org.junit.runner.RunWith
+import org.junit.rules.ExpectedException
 import java.io.IOException
 
 @RunWith(AndroidJUnit4::class)
@@ -39,7 +38,8 @@ class CachedChannelDataSourceTest {
     fun setup() {
         val context = ApplicationProvider.getApplicationContext<Context>()
         appDb = Room.inMemoryDatabaseBuilder(
-            context, AppDatabase::class.java).allowMainThreadQueries().build()
+            context, AppDatabase::class.java
+        ).allowMainThreadQueries().build()
 
         channelEntityMapper = ChannelEntityMapper(ChannelSeriesMapper(), ChannelLatestMediaMapper())
         cacheChannelDataSource = CachedChannelDataSourceImpl(appDb, channelEntityMapper)
@@ -58,15 +58,15 @@ class CachedChannelDataSourceTest {
         cacheChannelDataSource.insertChannelData(channelModel)
         val returnedChannelEntity = cacheChannelDataSource.getChannelData().blockingGet()
 
-        Assert.assertEquals(returnedChannelEntity, channelModel)
+        assertEquals(returnedChannelEntity, channelModel)
     }
 
     @Test
-    fun insertChannelTest()  {
+    fun insertChannelTest() {
         cacheChannelDataSource.insertChannelData(channelModel)
         val returnedChannelEntity = cacheChannelDataSource.getChannelData().blockingGet()
 
-        Assert.assertEquals(returnedChannelEntity, channelModel)
+        assertEquals(returnedChannelEntity, channelModel)
     }
 
     @Test
@@ -76,6 +76,6 @@ class CachedChannelDataSourceTest {
 
         val returnedData = cacheChannelDataSource.getChannelData().blockingGet()
 
-        Assert.assertEquals(returnedData.size, 0)
+        assertEquals(returnedData.size, 0)
     }
 }
