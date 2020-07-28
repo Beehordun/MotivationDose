@@ -9,14 +9,14 @@ class CategoryEntityMapper @Inject constructor() {
     fun fromCached(categories: List<CachedCategoryEntity>): List<CategoryModel> =
         categories.map {
             CategoryModel(
-               categoryName = it.categoryName
+                categoryName = it.categoryName
             )
         }
 
     fun toCached(categories: List<CategoryModel>): List<CachedCategoryEntity> =
         categories.map {
             CachedCategoryEntity(
-               categoryName = it.categoryName
+                categoryName = it.categoryName
             )
         }
 }

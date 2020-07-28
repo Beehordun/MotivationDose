@@ -2,11 +2,9 @@ package com.biodun.mindvalley.features.channel.data.cache.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.biodun.mindvalley.core.DbConstants
-import com.biodun.mindvalley.features.channel.data.model.channel.ChannelLatestMediaModel
-import com.biodun.mindvalley.features.channel.data.model.channel.ChannelSeriesModel
+import com.biodun.mindvalley.core.CHANNEL_TABLE
 
-@Entity(tableName = DbConstants.CHANNEL_TABLE)
+@Entity(tableName = CHANNEL_TABLE)
 data class CachedChannelEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,

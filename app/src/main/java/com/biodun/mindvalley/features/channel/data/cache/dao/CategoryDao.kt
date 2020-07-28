@@ -1,12 +1,14 @@
 package com.biodun.mindvalley.features.channel.data.cache.dao
 
+import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import com.biodun.mindvalley.core.DbConstants.DELETE_CATEGORIES_QUERY
-import com.biodun.mindvalley.core.DbConstants.GET_CATEGORIES_QUERY
+import com.biodun.mindvalley.core.DELETE_CATEGORIES_QUERY
+import com.biodun.mindvalley.core.GET_CATEGORIES_QUERY
 import com.biodun.mindvalley.features.channel.data.cache.entity.CachedCategoryEntity
-import io.reactivex.rxjava3.core.Single
+import io.reactivex.Single
 
+@Dao
 interface CategoryDao {
 
     @Insert

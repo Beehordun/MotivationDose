@@ -3,7 +3,7 @@ package com.biodun.mindvalley.features.channel.data.cache.db
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.biodun.mindvalley.core.DbConstants.DB_VERSION
+import com.biodun.mindvalley.core.DB_VERSION
 import com.biodun.mindvalley.features.channel.data.cache.dao.CategoryDao
 import com.biodun.mindvalley.features.channel.data.cache.dao.ChannelDao
 import com.biodun.mindvalley.features.channel.data.cache.dao.EpisodeDao
@@ -13,7 +13,8 @@ import com.biodun.mindvalley.features.channel.data.cache.entity.CachedEpisodeEnt
 
 @TypeConverters(ChannelLatestMediaTypeConverter::class, ChannelSeriesTypeConverter::class)
 @Database(
-    entities = [CachedCategoryEntity::class, CachedChannelEntity::class, CachedEpisodeEntity::class],
+    entities =
+    [CachedCategoryEntity::class, CachedChannelEntity::class, CachedEpisodeEntity::class],
     version = DB_VERSION,
     exportSchema = false
 )
