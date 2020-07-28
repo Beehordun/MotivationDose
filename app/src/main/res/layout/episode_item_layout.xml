@@ -1,6 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginStart="@dimen/episode_text_margin_start">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/imageCardView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:cardCornerRadius="10dp"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintDimensionRatio="1:1.8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/episodeImageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="center"
+            tools:src="@drawable/ic_launcher_background" />
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/episodeTitleText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/episode_title_text_margin_top"
+        android:fontFamily="@font/roboto_regular"
+        android:textColor="@color/color_white"
+        android:textSize="@dimen/episode_title_text_size"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintEnd_toEndOf="@id/imageCardView"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="@id/imageCardView"
+        app:layout_constraintTop_toBottomOf="@id/imageCardView"
+        tools:text="The cure for loneliness"
+        tools:textColor="@color/text_color_fade_second" />
+
+    <TextView
+        android:id="@+id/episodeChannelTitleText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/episode_channel_text_margin_top"
+        android:fontFamily="@font/roboto_regular"
+        android:textColor="@color/text_color_fade_second"
+        android:textSize="@dimen/episode_channel_text_size"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintEnd_toEndOf="@id/imageCardView"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="@id/imageCardView"
+        app:layout_constraintTop_toBottomOf="@id/episodeTitleText"
+        tools:text="The great healer is here" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

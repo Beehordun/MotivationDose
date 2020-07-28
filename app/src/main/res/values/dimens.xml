@@ -1,2 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <dimen name="title_text_size">30sp</dimen>
+    <dimen name="title_margin_top">56dp</dimen>
+    <dimen name="title_margin_start">20dp</dimen>
+    <dimen name="episode_recyclerview_margin_top">30dp</dimen>
+    <dimen name="episode_title_text_size">17sp</dimen>
+    <dimen name="episode_channel_text_size">13sp</dimen>
+    <dimen name="episode_channel_text_margin_top">12dp</dimen>
+    <dimen name="episode_title_text_margin_top">10dp</dimen>
+    <dimen name="episode_text_margin_start">24dp</dimen>
+    <dimen name="episode_text_size">20sp</dimen>
+    <dimen name="episode_text_margin_top">30dp</dimen>
+    <dimen name="channel_icon_size">50dp</dimen>
+    <dimen name="category_text_size">18sp</dimen>
+    <dimen name="category_margin">10dp</dimen>
+    <dimen name="category_margin_top">16dp</dimen>
+    <dimen name="category_margin_bottom">46dp</dimen>
+    <dimen name="channel_title_margin_top">6dp</dimen>
+</resources>
