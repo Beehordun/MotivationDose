@@ -1,6 +1,6 @@
 package com.biodun.mindvalley.features.channel.domain.model
 
-data class Episode(
+data class EpisodeData(
     val episodeType: String,
     val episodeTitle: String,
     val episodeCoverAssetUrl: String,

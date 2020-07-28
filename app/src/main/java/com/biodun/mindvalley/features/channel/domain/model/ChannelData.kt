@@ -1,6 +1,6 @@
 package com.biodun.mindvalley.features.channel.domain.model
 
-data class Channel(
+data class ChannelData(
     val channelTitle: String,
     val channelMediaCount: Int,
     val channelIconAssetUrl: String,
