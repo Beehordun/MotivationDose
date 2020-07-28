@@ -1,6 +1,6 @@
 package com.biodun.mindvalley.features.channel.data.remote.mapper
 
-import com.biodun.mindvalley.core.Constants.EMPTY_STRING
+import com.biodun.mindvalley.core.EMPTY_STRING
 import com.biodun.mindvalley.features.channel.data.model.episode.EpisodeModel
 import com.biodun.mindvalley.features.channel.data.remote.model.episode.RemoteEpisode
 import javax.inject.Inject

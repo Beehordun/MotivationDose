@@ -1,7 +1,7 @@
 package com.biodun.mindvalley.features.channel.data.remote.mapper
 
-import com.biodun.mindvalley.core.Constants.DEFAULT_INT
-import com.biodun.mindvalley.core.Constants.EMPTY_STRING
+import com.biodun.mindvalley.core.DEFAULT_INT
+import com.biodun.mindvalley.core.EMPTY_STRING
 import com.biodun.mindvalley.features.channel.data.model.channel.ChannelModel
 import com.biodun.mindvalley.features.channel.data.remote.model.channel.RemoteChannel
 import javax.inject.Inject

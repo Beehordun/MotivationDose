@@ -1,8 +1,9 @@
-package com.biodun.mindvalley.features.channel.data.remote
+package com.biodun.mindvalley.features.channel.data.remote.category
 
 import com.biodun.mindvalley.features.channel.data.model.category.CategoryModel
+import com.biodun.mindvalley.features.channel.data.remote.ChannelApi
 import com.biodun.mindvalley.features.channel.data.remote.mapper.CategoryModelMapper
-import io.reactivex.rxjava3.core.Single
+import io.reactivex.Single
 import javax.inject.Inject
 
 class RemoteCategoryDataSourceImpl @Inject constructor(

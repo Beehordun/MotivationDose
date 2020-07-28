@@ -1,6 +1,6 @@
 package com.biodun.mindvalley.features.channel.data.remote.mapper
 
-import com.biodun.mindvalley.core.Constants.EMPTY_STRING
+import com.biodun.mindvalley.core.EMPTY_STRING
 import com.biodun.mindvalley.features.channel.data.model.category.CategoryModel
 import com.biodun.mindvalley.features.channel.data.remote.model.category.RemoteCategory
 import javax.inject.Inject
