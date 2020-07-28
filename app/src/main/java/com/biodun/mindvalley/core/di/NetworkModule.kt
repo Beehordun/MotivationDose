@@ -1,7 +1,8 @@
-package com.biodun.monee.di
+package com.biodun.mindvalley.core.di
 
-import com.biodun.monee.BuildConfig
-import com.biodun.remote.MoneeApi
+import com.biodun.mindvalley.BuildConfig
+import com.biodun.mindvalley.features.channel.data.remote.ChannelApi
+import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,22 +16,23 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
-const val TIME_OUT = 5L
+const val TIME_OUT = 10L
 @Module
 @InstallIn(ApplicationComponent::class)
 object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideNewsApi(okHttpClient: OkHttpClient): MoneeApi {
+    fun provideMindValleyChannelApi(okHttpClient: OkHttpClient): ChannelApi {
         val retrofit = Retrofit.Builder()
             .baseUrl(BuildConfig.BASE_URL)
+            .addCallAdapterFactory((RxJava2CallAdapterFactory.create()))
             .addConverterFactory(ScalarsConverterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient)
             .build()
 
-        return retrofit.create(MoneeApi::class.java)
+        return retrofit.create(ChannelApi::class.java)
     }
 
     @Provides

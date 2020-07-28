@@ -1,7 +1,11 @@
 package com.biodun.mindvalley.core.di
 
-import com.biodun.cache.datasources.*
-import com.example.data.cache.*
+import com.biodun.mindvalley.features.channel.data.cache.CachedCategoryDataSource
+import com.biodun.mindvalley.features.channel.data.cache.CachedCategoryDataSourceImpl
+import com.biodun.mindvalley.features.channel.data.cache.CachedChannelDataSource
+import com.biodun.mindvalley.features.channel.data.cache.CachedChannelDataSourceImpl
+import com.biodun.mindvalley.features.channel.data.cache.CachedEpisodeDataSourceImpl
+import com.biodun.mindvalley.features.channel.data.cache.CachedEpisodeDataSource
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -12,37 +16,17 @@ import dagger.hilt.android.components.ApplicationComponent
 abstract class CacheModule {
 
     @Binds
-    abstract fun bindCacheBusinessNewsDataSource(
-        cacheBusinessNewsDataSourceImpl: CacheBusinessNewsDataSourceImpl
-    ): CacheBusinessNewsDataSource
+    abstract fun bindCachedChannelDataSource(
+        cacheChannelDataSourceImpl: CachedChannelDataSourceImpl
+    ): CachedChannelDataSource
 
     @Binds
-    abstract fun bindCacheTechnologyNewsDataSource(
-        cacheTechnologyNewsDataSourceImpl: CacheTechnologyNewsDataSourceImpl
-    ): CacheTechnologyNewsDataSource
+    abstract fun bindCachedCategoryDataSource(
+        cachedCategoryDataSourceImpl: CachedCategoryDataSourceImpl
+    ): CachedCategoryDataSource
 
     @Binds
-    abstract fun bindCacheEntertainmentNewsDataSource(
-        cacheEntertainmentNewsDataSourceImpl: CacheEntertainmentNewsDataSourceImpl
-    ): CacheEntertainmentNewsDataSource
-
-    @Binds
-    abstract fun bindCacheSportsNewsDataSource(
-        cacheSportsNewsDataSourceImpl: CacheSportsNewsDataSourceImpl
-    ): CacheSportsNewsDataSource
-
-    @Binds
-    abstract fun bindCacheGeneralNewsDataSource(
-        cacheGeneralNewsDataSourceImpl: CacheGeneralNewsDataSourceImpl
-    ): CacheGeneralNewsDataSource
-
-    @Binds
-    abstract fun bindCacheScienceNewsDataSource(
-        cacheScienceNewsDataSourceImpl: CacheScienceNewsDataSourceImpl
-    ): CacheScienceNewsDataSource
-
-    @Binds
-    abstract fun bindCacheHealthNewsDataSource(
-        cacheHealthNewsDataSourceImpl: CacheHealthNewsDataSourceImpl
-    ): CacheHealthNewsDataSource
+    abstract fun bindCachedEpisodeDataSource(
+        cachedEpisodeDataSourceImpl: CachedEpisodeDataSourceImpl
+    ): CachedEpisodeDataSource
 }

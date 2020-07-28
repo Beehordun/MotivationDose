@@ -1,4 +1,4 @@
-package com.biodun.core.base
+package com.biodun.mindvalley.core
 
 import androidx.lifecycle.ViewModel
 import io.reactivex.disposables.CompositeDisposable

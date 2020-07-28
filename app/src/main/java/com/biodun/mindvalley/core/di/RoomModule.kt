@@ -2,8 +2,8 @@ package com.biodun.mindvalley.core.di
 
 import android.content.Context
 import androidx.room.Room
-import com.biodun.cache.db.DbConstants
-import com.biodun.cache.db.NewsResultDatabase
+import com.biodun.mindvalley.core.DB_NAME
+import com.biodun.mindvalley.features.channel.data.cache.db.AppDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,11 +17,11 @@ object RoomModule {
 
     @Provides
     @Singleton
-    fun provideNewsResultDatabase(@ApplicationContext application: Context): NewsResultDatabase {
+    fun provideNewsResultDatabase(@ApplicationContext application: Context): AppDatabase {
         return Room.databaseBuilder(
             application.applicationContext,
-            NewsResultDatabase::class.java,
-            DbConstants.DATABASE_NAME
+            AppDatabase::class.java,
+            DB_NAME
         ).build()
     }
 }

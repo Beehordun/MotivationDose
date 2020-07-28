@@ -1,11 +1,13 @@
 package com.biodun.mindvalley.core.scheduler
 
-import com.biodun.core.scheduler.SchedulerInterface
 import io.reactivex.Scheduler
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class AppScheduler : SchedulerInterface {
+@Singleton
+class AppSchedulerWrapper @Inject constructor() : SchedulerWrapper {
     override fun io(): Scheduler = Schedulers.io()
     override fun mainThread(): Scheduler = AndroidSchedulers.mainThread()
     override fun computation(): Scheduler = Schedulers.computation()

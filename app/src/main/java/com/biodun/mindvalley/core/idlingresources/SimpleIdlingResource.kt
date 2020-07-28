@@ -1,4 +1,4 @@
-package com.lnicolet.androidchallenge.idlingresources
+package com.biodun.mindvalley.core.idlingresources
 
 import androidx.test.espresso.IdlingResource
 import java.util.concurrent.atomic.AtomicInteger
@@ -7,7 +7,6 @@ class SimpleCountingIdlingResource(private val mResourceName: String) : IdlingRe
 
     private val counter = AtomicInteger(0)
 
-    // written from main thread, read from any thread.
     @Volatile
     private var resourceCallback: IdlingResource.ResourceCallback? = null
 
@@ -31,9 +30,7 @@ class SimpleCountingIdlingResource(private val mResourceName: String) : IdlingRe
         val counterVal = counter.decrementAndGet()
         if (counterVal == 0) {
             // we've gone from non-zero to zero. That means we're idle now! Tell espresso.
-            resourceCallback?.let {
-                it.onTransitionToIdle()
-            }
+            resourceCallback?.onTransitionToIdle()
         }
 
         if (counterVal < 0) {
@@ -42,9 +39,9 @@ class SimpleCountingIdlingResource(private val mResourceName: String) : IdlingRe
     }
 }
 
-class EspressoIdlingResource(RESOURCE: String){
+class EspressoIdlingResource(resource: String) {
 
-    private val mCountingIdlingResource = SimpleCountingIdlingResource(RESOURCE)
+    private val mCountingIdlingResource = SimpleCountingIdlingResource(resource)
 
     val idlingResource: IdlingResource
         get() = mCountingIdlingResource

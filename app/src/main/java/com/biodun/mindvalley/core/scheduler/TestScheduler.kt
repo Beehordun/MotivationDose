@@ -1,10 +1,8 @@
 package com.biodun.mindvalley.core.scheduler
 
-import com.biodun.core.scheduler.SchedulerInterface
 import io.reactivex.schedulers.Schedulers
 
-class TestScheduler : SchedulerInterface {
-
+class TestScheduler : SchedulerWrapper {
     override fun mainThread() = Schedulers.trampoline()
     override fun io() = Schedulers.trampoline()
     override fun computation() = Schedulers.trampoline()

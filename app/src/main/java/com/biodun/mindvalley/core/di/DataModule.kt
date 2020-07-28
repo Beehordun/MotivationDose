@@ -1,8 +1,11 @@
-package com.example.posteey.di
+package com.biodun.mindvalley.core.di
 
-
-import com.example.data.repositories.*
-import com.example.domain.repositories.*
+import com.biodun.mindvalley.features.channel.data.repositories.CategoryRepositoryImpl
+import com.biodun.mindvalley.features.channel.data.repositories.ChannelRepositoryImpl
+import com.biodun.mindvalley.features.channel.data.repositories.EpisodeRepositoryImpl
+import com.biodun.mindvalley.features.channel.domain.repositories.CategoryRepository
+import com.biodun.mindvalley.features.channel.domain.repositories.ChannelRepository
+import com.biodun.mindvalley.features.channel.domain.repositories.EpisodeRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -12,17 +15,17 @@ import dagger.hilt.android.components.ApplicationComponent
 @InstallIn(ApplicationComponent::class)
 abstract class DataModule {
     @Binds
-    abstract fun bindBusinessNewsRepository(businessNewsRepositoryImpl: BusinessNewsRepositoryImpl): BusinessNewsRepository
+    abstract fun bindCategoryRepository(
+        categoryRepositoryImpl: CategoryRepositoryImpl
+    ): CategoryRepository
+
     @Binds
-    abstract fun bindHealthNewsRepository(healthNewsRepositoryImpl: HealthNewsRepositoryImpl): HealthNewsRepository
+    abstract fun bindEpisodeRepository(
+        episodeRepositoryImpl: EpisodeRepositoryImpl
+    ): EpisodeRepository
+
     @Binds
-    abstract fun bindTechnologyNewsRepository(technologyNewsRepositoryImpl: TechnologyNewsRepositoryImpl): TechnologyNewsRepository
-    @Binds
-    abstract fun bindEntertainmentNewsRepository(entertainmentNewsRepositoryImpl: EntertainmentNewsRepositoryImpl): EntertainmentNewsRepository
-    @Binds
-    abstract fun bindScienceNewsRepository(scienceNewsRepositoryImpl: ScienceNewsRepositoryImpl): ScienceNewsRepository
-    @Binds
-    abstract fun bindSportsNewsRepository(sportsNewsRepositoryImpl: SportsNewsRepositoryImpl): SportsNewsRepository
-    @Binds
-    abstract fun bindGeneralNewsRepository(generalNewsRepositoryImpl: GeneralNewsRepositoryImpl): GeneralNewsRepository
+    abstract fun bindChannelRepository(
+        channelRepositoryImpl: ChannelRepositoryImpl
+    ): ChannelRepository
 }
