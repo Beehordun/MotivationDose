@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.os.Handler
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.annotation.DrawableRes
 import androidx.annotation.VisibleForTesting
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import com.biodun.mindvalley.R
 import com.biodun.mindvalley.core.ViewState
@@ -24,6 +26,7 @@ import com.biodun.mindvalley.features.channel.ui.adapters.EpisodeAdapter
 import com.biodun.mindvalley.features.channel.ui.adapters.ItemOffsetDecoration
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_channel.*
+import javax.annotation.Resource
 
 @AndroidEntryPoint
 class ChannelActivity : AppCompatActivity() {
@@ -105,6 +108,12 @@ class ChannelActivity : AppCompatActivity() {
         with(channelRecyclerView) {
             adapter = channelAdapter
             isNestedScrollingEnabled = false
+            addItemDecoration(DividerItemDecoration(
+                this@ChannelActivity, DividerItemDecoration.VERTICAL).apply {
+                setDrawable(resources.getDrawable(R.drawable.recyclerview_divider))
+            }
+            )
+            addItemDecoration( ItemOffsetDecoration(context, R.dimen.title_margin_start))
         }
 
         categoryAdapter = CategoryAdapter(this, categoryData)

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/title_margin_start"
+    android:paddingBottom="@dimen/category_margin_top"
     android:background="@color/backgroundColor">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,7 +18,7 @@
             android:id="@+id/channelIconImageView"
             android:layout_width="@dimen/channel_icon_size"
             android:layout_height="@dimen/channel_icon_size"
-            android:layout_marginStart="@dimen/episode_text_margin_start"
+            android:layout_marginStart="@dimen/title_margin_start"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@drawable/ic_launcher_background" />
@@ -27,7 +27,7 @@
             android:id="@+id/channelTitleText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/episode_text_margin_start"
+            android:layout_marginStart="@dimen/title_margin_start"
             android:fontFamily="@font/roboto_bold"
             android:textColor="@color/color_white"
             android:textSize="@dimen/episode_channel_text_size"
@@ -60,13 +60,4 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/channel_title_layout" />
-    <View
-        android:id="@+id/episodeRecyclerViewDivider"
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:layout_marginTop="@dimen/category_margin_top"
-        android:background="@color/divider_color"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/innerRecyclerView" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

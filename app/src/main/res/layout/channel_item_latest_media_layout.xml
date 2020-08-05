@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginStart="@dimen/episode_text_margin_start"
     android:background="@color/backgroundColor">
 
     <androidx.cardview.widget.CardView

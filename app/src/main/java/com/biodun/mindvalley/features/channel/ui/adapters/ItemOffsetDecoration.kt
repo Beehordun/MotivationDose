@@ -21,3 +21,12 @@ class ItemOffsetDecoration(context: Context, @DimenRes itemOffSetId: Int) : Item
         outRect.set(mItemOffset, mItemOffset, mItemOffset, mItemOffset)
     }
 }
+
+class MarginItemDecoration(private val spaceHeight: Int) : RecyclerView.ItemDecoration() {
+    override fun getItemOffsets(outRect: Rect, view: View,
+                                parent: RecyclerView, state: RecyclerView.State) {
+        with(outRect) {
+            right = spaceHeight
+        }
+    }
+}

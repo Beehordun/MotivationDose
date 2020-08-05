@@ -39,7 +39,11 @@ class ChannelAdapter(
             channelMediaCountText.text =
                 AdapterUtil.getMediaCountText(channelData.channelMediaCount, channelData)
 
-            innerRecyclerView.adapter = AdapterUtil.getAdapter(context, channelData)
+            with(innerRecyclerView) {
+                adapter = AdapterUtil.getAdapter(context, channelData)
+                addItemDecoration(MarginItemDecoration(40))
+            }
+
         }
     }
 
