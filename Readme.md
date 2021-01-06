@@ -1,4 +1,5 @@
 # MotivationDose
+![Screenshot](screenshot.png) 
 
 ## Architecture
 The app uses the **Clean Architeture + MVVM** architectural pattern.
@@ -17,10 +18,6 @@ Dagger Hilt, Room, LiveData, ViewModel, RxJava, and Junit e.t.c
 
 ## Tests
 Unit test and UI Tests
-
-## Challenging part
-
-The challenging part for me is making sure the app UI looks exactly as that the one in the design.
 
 ## Feature I would like to add in the feature
 
