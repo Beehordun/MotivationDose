@@ -31,12 +31,6 @@ class ChannelViewModel @ViewModelInject constructor(
     private var _episodeLiveData = MutableLiveData<ViewState<List<EpisodeData>>>()
     var episodeDataLiveData: LiveData<ViewState<List<EpisodeData>>> = _episodeLiveData
 
-   /* init {
-        getChannelData()
-        getEpisodeData()
-        getCategoryData()
-    }*/
-
     fun getCategoryData() {
         addDisposable(
             getCategoryUseCase.getCategoryData()
