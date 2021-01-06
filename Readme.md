@@ -1,4 +1,4 @@
-# MindValley Take Home Test
+# MotivationDose
 
 ## Architecture
 The app uses the **Clean Architeture + MVVM** architectural pattern.
